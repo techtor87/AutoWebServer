@@ -86,11 +86,12 @@ def build_status_table( fout ):
     fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;height:15.0pt'><p align=center style='text-align:center'><span style='color:black'>" + Cells(3, 4) + "</span></p></td></tr>\n")
 
     # CMU TOTAL
-    fout.write("<tr style='height:15.0pt'>\n")
-    fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p ><b><span style='color:black'>CMU Totals</span></b></p></td>\n")
-    fout.write("<td width=213 valign=bottom style='width:160.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cmu_active) + "</span></b></p></td>\n")
-    fout.write("<td width=307 valign=bottom style='width:230.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cmu_pending) + "</span></b></p></td>\n")
-    fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cmu_val) + "</span></b></p></td></tr>\n")
+    if 'today' in summary_values:
+        fout.write("<tr style='height:15.0pt'>\n")
+        fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p ><b><span style='color:black'>CMU Totals</span></b></p></td>\n")
+        fout.write("<td width=213 valign=bottom style='width:160.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cmu_active) + "</span></b></p></td>\n")
+        fout.write("<td width=307 valign=bottom style='width:230.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cmu_pending) + "</span></b></p></td>\n")
+        fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cmu_val) + "</span></b></p></td></tr>\n")
 
     # Blank
     fout.write("<tr style='height:15.0pt'>\n")
@@ -114,11 +115,12 @@ def build_status_table( fout ):
     fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;height:15.0pt'><p align=center style='text-align:center'><span style='color:black'>" + Cells(7, 4) + "</span></p></td></tr>\n")
 
     # CCA TOTAL
-    fout.write("<tr style='height:15.0pt'>\n")
-    fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p ><b><span style='color:black'>CCA Totals</span></b></p></td>\n")
-    fout.write("<td width=213 valign=bottom style='width:160.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cca_active) + "</span></b></p></td>\n")
-    fout.write("<td width=307 valign=bottom style='width:230.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cca_pending) + "</span></b></p></td>\n")
-    fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cca_val) + "</span></b></p></td></tr>\n")
+    if 'today' in summary_values:
+        fout.write("<tr style='height:15.0pt'>\n")
+        fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p ><b><span style='color:black'>CCA Totals</span></b></p></td>\n")
+        fout.write("<td width=213 valign=bottom style='width:160.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cca_active) + "</span></b></p></td>\n")
+        fout.write("<td width=307 valign=bottom style='width:230.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cca_pending) + "</span></b></p></td>\n")
+        fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background:#BDD7EE;height:15.0pt'><p align=center style='text-align:center'><b><span style='color:black'>" + str(summary_values['today'].cca_val) + "</span></b></p></td></tr>\n")
 
     # Blank
     fout.write("<tr style='height:15.0pt'>\n")
@@ -128,88 +130,93 @@ def build_status_table( fout ):
     fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;height:15.0pt'></td></tr>\n")
 
     # Total Today
-    if summary_values['today'].tot_active < summary_values['yest'].tot_active:
-        act_color = 'green'
-        pass
-    elif summary_values['today'].tot_active == summary_values['yest'].tot_active:
-        act_color = 'yellow'
-        pass
-    else:
-        act_color = 'red'
-        pass
+    if 'today' in summary_values and 'yest' in summary_values:
+        if summary_values['today'].tot_active < summary_values['yest'].tot_active:
+            act_color = 'green'
+            pass
+        elif summary_values['today'].tot_active == summary_values['yest'].tot_active:
+            act_color = 'yellow'
+            pass
+        else:
+            act_color = 'red'
+            pass
 
-    if summary_values['today'].tot_pending < summary_values['yest'].tot_pending:
-        pend_color = 'green'
-        pass
-    elif summary_values['today'].tot_pending == summary_values['yest'].tot_pending:
-        pend_color = 'yellow'
-        pass
-    else:
-        pend_color = 'red'
-        pass
+        if summary_values['today'].tot_pending < summary_values['yest'].tot_pending:
+            pend_color = 'green'
+            pass
+        elif summary_values['today'].tot_pending == summary_values['yest'].tot_pending:
+            pend_color = 'yellow'
+            pass
+        else:
+            pend_color = 'red'
+            pass
 
-    if summary_values['today'].tot_val > summary_values['yest'].tot_val:
-        val_color = 'green'
-        pass
-    elif summary_values['today'].tot_val == summary_values['yest'].tot_val:
-        val_color = 'yellow'
-        pass
-    else:
-        val_color = 'red'
-        pass
+        if summary_values['today'].tot_val > summary_values['yest'].tot_val:
+            val_color = 'green'
+            pass
+        elif summary_values['today'].tot_val == summary_values['yest'].tot_val:
+            val_color = 'yellow'
+            pass
+        else:
+            val_color = 'red'
+            pass
 
-    fout.write("<tr style='height:18.75pt'>\n")
-    fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background-color:#BDD7EE;height:18.75pt'><p ><b><span style='font-size:14.0pt;color:black'>CCA &amp; CMU Totals Today</span></b></p></td>\n")
-    fout.write("<td width=213 valign=bottom style='width:160.0pt;                                background-color:" + act_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['today'].cmu_active + summary_values['today'].cca_active) + "</span></b></p></td>\n")
-    fout.write("<td width=307 valign=bottom style='width:230.0pt;                                background-color:" + pend_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['today'].cmu_pending + summary_values['today'].cca_pending) + "</span></b></p></td>\n")
-    fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background-color:" + val_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['today'].cmu_val + summary_values['today'].cca_val) + "</span></b></p></td></tr>\n")
+    if 'today' in summary_values:
+        fout.write("<tr style='height:18.75pt'>\n")
+        fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background-color:#BDD7EE;height:18.75pt'><p ><b><span style='font-size:14.0pt;color:black'>CCA &amp; CMU Totals Today</span></b></p></td>\n")
+        fout.write("<td width=213 valign=bottom style='width:160.0pt;                                background-color:" + act_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['today'].cmu_active + summary_values['today'].cca_active) + "</span></b></p></td>\n")
+        fout.write("<td width=307 valign=bottom style='width:230.0pt;                                background-color:" + pend_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['today'].cmu_pending + summary_values['today'].cca_pending) + "</span></b></p></td>\n")
+        fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background-color:" + val_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['today'].cmu_val + summary_values['today'].cca_val) + "</span></b></p></td></tr>\n")
 
     # Total Yesterday
-    if summary_values['yest'].tot_active < summary_values['week'].tot_active:
-        act_color = 'green'
-        pass
-    elif summary_values['yest'].tot_active == summary_values['week'].tot_active:
-        act_color = 'yellow'
-        pass
-    else:
-        act_color = 'red'
-        pass
+    if 'yest' in summary_values and 'week' in summary_values:
+        if summary_values['yest'].tot_active < summary_values['week'].tot_active:
+            act_color = 'green'
+            pass
+        elif summary_values['yest'].tot_active == summary_values['week'].tot_active:
+            act_color = 'yellow'
+            pass
+        else:
+            act_color = 'red'
+            pass
 
-    if summary_values['yest'].tot_pending < summary_values['week'].tot_pending:
-        pend_color = 'green'
-        pass
-    elif summary_values['yest'].tot_pending == summary_values['week'].tot_pending:
-        pend_color = 'yellow'
-        pass
-    else:
-        pend_color = 'red'
-        pass
+        if summary_values['yest'].tot_pending < summary_values['week'].tot_pending:
+            pend_color = 'green'
+            pass
+        elif summary_values['yest'].tot_pending == summary_values['week'].tot_pending:
+            pend_color = 'yellow'
+            pass
+        else:
+            pend_color = 'red'
+            pass
 
-    if summary_values['yest'].tot_val > summary_values['week'].tot_val:
-        val_color = 'green'
-        pass
-    elif summary_values['yest'].tot_val == summary_values['week'].tot_val:
-        val_color = 'yellow'
-        pass
-    else:
-        val_color = 'red'
+        if summary_values['yest'].tot_val > summary_values['week'].tot_val:
+            val_color = 'green'
+            pass
+        elif summary_values['yest'].tot_val == summary_values['week'].tot_val:
+            val_color = 'yellow'
+            pass
+        else:
+            val_color = 'red'
 
-    fout.write("<tr style='height:18.75pt'>\n")
-    fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background-color:#BDD7EE;height:18.75pt'><p ><b><span style='font-size:14.0pt;color:black'>CCA &amp; CMU Totals Yesterday</span></b></p></td>\n")
-    fout.write("<td width=213 valign=bottom style='width:160.0pt;                                background-color:" + act_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['yest'].cmu_active + summary_values['yest'].cca_active) + "</span></b></p></td>\n")
-    fout.write("<td width=307 valign=bottom style='width:230.0pt;                                background-color:" + pend_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['yest'].cmu_pending + summary_values['yest'].cca_pending) + "</span></b></p></td>\n")
-    fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background-color:" + val_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['yest'].cmu_val + summary_values['yest'].cca_val) + "</span></b></p></td></tr>\n")
+    if 'yest' in summary_values:
+        fout.write("<tr style='height:18.75pt'>\n")
+        fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background-color:#BDD7EE;height:18.75pt'><p ><b><span style='font-size:14.0pt;color:black'>CCA &amp; CMU Totals Yesterday</span></b></p></td>\n")
+        fout.write("<td width=213 valign=bottom style='width:160.0pt;                                background-color:" + act_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['yest'].cmu_active + summary_values['yest'].cca_active) + "</span></b></p></td>\n")
+        fout.write("<td width=307 valign=bottom style='width:230.0pt;                                background-color:" + pend_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['yest'].cmu_pending + summary_values['yest'].cca_pending) + "</span></b></p></td>\n")
+        fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background-color:" + val_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['yest'].cmu_val + summary_values['yest'].cca_val) + "</span></b></p></td></tr>\n")
 
     # Total Week Ago
     act_color = 'green'
     pend_color = 'green'
     val_color = 'green'
 
-    fout.write("<tr style='height:18.75pt'>\n")
-    fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background-color:#BDD7EE;height:18.75pt'><p ><b><span style='font-size:14.0pt;color:black'>CCA &amp; CMU Totals 1 Week Ago</span></b></p></td>\n")
-    fout.write("<td width=213 valign=bottom style='width:160.0pt;                                background-color:" + act_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['week'].cmu_active + summary_values['week'].cca_active) + "</span></b></p></td>\n")
-    fout.write("<td width=307 valign=bottom style='width:230.0pt;                                background-color:" + pend_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['week'].cmu_pending + summary_values['week'].cca_pending) + "</span></b></p></td>\n")
-    fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background-color:" + val_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['week'].cmu_val + summary_values['week'].cca_val) + "</span></b></p></td></tr></table>\n")
+    if 'week' in summary_values:
+        fout.write("<tr style='height:18.75pt'>\n")
+        fout.write("<td width=256 valign=bottom style='width:192.0pt;border-left:solid #5B9BD5 1.0pt;background-color:#BDD7EE;height:18.75pt'><p ><b><span style='font-size:14.0pt;color:black'>CCA &amp; CMU Totals 1 Week Ago</span></b></p></td>\n")
+        fout.write("<td width=213 valign=bottom style='width:160.0pt;                                background-color:" + act_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['week'].cmu_active + summary_values['week'].cca_active) + "</span></b></p></td>\n")
+        fout.write("<td width=307 valign=bottom style='width:230.0pt;                                background-color:" + pend_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['week'].cmu_pending + summary_values['week'].cca_pending) + "</span></b></p></td>\n")
+        fout.write("<td width=264 valign=bottom style='width:2.75in;border-right:solid #5B9BD5 1.0pt;background-color:" + val_color + ";height:18.75pt'><p align=center style='text-align:center'><b><span style='font-size:14.0pt;color:black'>" + str(summary_values['week'].cmu_val + summary_values['week'].cca_val) + "</span></b></p></td></tr></table>\n")
 
     return
 
